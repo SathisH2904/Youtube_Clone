@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Navbar from './Components/Navbar/Navbar';
+import Home from './Pages/Home/Home';
+import Video from './Pages/Video/Video';
+import { useState } from 'react';
+// import Home from './Pages/Home/Home';
 
 function App() {
+
+  const [sidebar, setSidebar] = useState(true)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <div> 
+    <Navbar setSidebar={setSidebar}/>
+    <Routes>
+      <Route path='/' element={<Home sidebar={sidebar}/>}/>
+      <Route path='video/:categoryId/:videoId' element={<Video/>}/>
+    </Routes>
     </div>
   );
 }
